@@ -1,0 +1,20 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "incremental": true,
+    "tsBuildInfoFile": ".tsbuildinfo",
+    "outDir": "dist",
+    "rootDir": "src",
+    "types": ["node"]
+  },
+  "include": ["src"],
+  "exclude": ["src/routes/orders.ts"],
+  "references": [
+    {
+      "path": "../../lib/db"
+    },
+    {
+      "path": "../../lib/api-zod"
+    }
+  ]
+}

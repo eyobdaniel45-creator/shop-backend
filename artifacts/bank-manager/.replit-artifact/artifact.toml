@@ -1,0 +1,28 @@
+kind = "web"
+previewPath = "/"
+title = "Gebeya Bank Manager"
+description = "A private admin workspace for authorized Gebeya staff to sign in and manage the bank accounts used for marketplace payments."
+version = "1.0.0"
+id = "artifacts/bank-manager"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 18196
+
+[services.development]
+run = "pnpm --filter @workspace/bank-manager run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/bank-manager", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/bank-manager/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "18196"
+BASE_PATH = "/"
